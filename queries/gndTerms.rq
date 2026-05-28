@@ -13,7 +13,7 @@ CONSTRUCT {
 }
 
 WHERE {
-    ?type wdt:227 ?gndType .
+    ?type wdt:P227 ?gndType .
     ?type wdt:P31 ?wdType .
     ?type rdfs:label ?name .
     ?type schema:description ?description .
