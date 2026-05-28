@@ -17,8 +17,10 @@ WHERE {
   ?artist wdt:P106/wdt:P279* wd:Q483501 .
   ?artist rdfs:label ?name .
   ?artist schema:description ?description .
-  ?artist wdt:P214 ?viaf_id .
-  BIND(URI(CONCAT("https://viaf.org/viaf/", STR(?viaf_id))) AS ?viaf) 
+  OPTIONAL {
+    ?artist wdt:P214 ?viaf_id .
+    BIND(URI(CONCAT("https://viaf.org/viaf/", STR(?viaf_id))) AS ?viaf) 
+  }
   FILTER (LANG(?name) = "en")
   FILTER (LANG(?description) = "en")
 }
