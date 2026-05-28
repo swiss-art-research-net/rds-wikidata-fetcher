@@ -9,7 +9,7 @@ CONSTRUCT {
     ?type wdt:P31 ?wdType .
     ?type rdfs:label ?name .
     ?type schema:description ?description .
-    ?type owl:sameAs ?gndType .
+    ?type owl:sameAs ?gnd .
 }
 
 WHERE {
@@ -17,6 +17,7 @@ WHERE {
     ?type wdt:P31 ?wdType .
     ?type rdfs:label ?name .
     ?type schema:description ?description .
+    BIND(URI(CONCAT("https://d-nb.info/gnd/", ?gndType)) as ?gnd)
     FILTER (LANG(?name) = "en")
     FILTER (LANG(?description) = "en")
 }
