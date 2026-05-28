@@ -9,7 +9,7 @@ CONSTRUCT {
     ?type wdt:P31 ?wdType .
     ?type rdfs:label ?name .
     ?type schema:description ?description .
-    ?type owl:sameAs ?aatType .
+    ?type owl:sameAs ?aat .
 }
 
 WHERE {
@@ -17,6 +17,7 @@ WHERE {
     ?type wdt:P31 ?wdType .
     ?type rdfs:label ?name .
     ?type schema:description ?description .
+    BIND(URI(CONCAT("http://vocab.getty.edu/aat/", STR(?aatType))) AS ?aat)
     FILTER (LANG(?name) = "en")
     FILTER (LANG(?description) = "en")
 }
