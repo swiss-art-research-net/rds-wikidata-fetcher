@@ -4,17 +4,21 @@ PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX schema: <http://schema.org/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
 CONSTRUCT {
   ?artist wdt:P31 wd:Q5 .
   ?artist rdf:type wd:Q5 .
   ?artist rdfs:label ?name .
   ?artist schema:description ?description .
+  ?artist owl:sameAs ?viaf .
 }
 WHERE {
   ?artist wdt:P31 wd:Q5 .
   ?artist wdt:P106/wdt:P279* wd:Q483501 .
   ?artist rdfs:label ?name .
   ?artist schema:description ?description .
+  ?artist wdt:P214 ?viaf_id .
+  BIND(URI(CONCAT("https://viaf.org/viaf/", STR(?viaf_id))) AS ?viaf) 
   FILTER (LANG(?name) = "en")
   FILTER (LANG(?description) = "en")
 }
