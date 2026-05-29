@@ -6,6 +6,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX schema: <http://schema.org/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 CONSTRUCT {
+    ?type rdf:type ?wdType .
     ?type wdt:P31 ?wdType .
     ?type rdfs:label ?name .
     ?type schema:description ?description .
