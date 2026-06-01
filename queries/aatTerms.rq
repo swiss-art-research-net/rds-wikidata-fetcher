@@ -1,3 +1,4 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX wd: <http://www.wikidata.org/entity/>
@@ -6,18 +7,18 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX schema: <http://schema.org/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 CONSTRUCT {
-    ?type rdf:type ?wdType .
-    ?type wdt:P31 ?wdType .
-    ?type rdfs:label ?name .
-    ?type schema:description ?description .
-    ?type owl:sameAs ?aat .
+    ?aatConcept rdf:type ?wdType, crm:E55_Type .
+    ?aatConcept wdt:P31 ?wdType .
+    ?aatConcept rdfs:label ?name .
+    ?aatConcept schema:description ?description .
+    ?aatConcept owl:sameAs ?aat .
 }
 
 WHERE {
-    ?type wdt:P1014 ?aatType .
-    ?type wdt:P31 ?wdType .
-    ?type rdfs:label ?name .
-    ?type schema:description ?description .
+    ?aatConcept wdt:P1014 ?aatType .
+    ?aatConcept wdt:P31 ?wdType .
+    ?aatConcept rdfs:label ?name .
+    ?aatConcept schema:description ?description .
     BIND(URI(CONCAT("http://vocab.getty.edu/aat/", STR(?aatType))) AS ?aat)
     FILTER (LANG(?name) = "en")
     FILTER (LANG(?description) = "en")
