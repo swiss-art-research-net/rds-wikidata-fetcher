@@ -6,19 +6,19 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX schema: <http://schema.org/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 CONSTRUCT {
-    ?type rdf:type ?wdType .
-    ?type wdt:P31 ?wdType .
-    ?type rdfs:label ?name .
-    ?type schema:description ?description .
-    ?type owl:sameAs ?gnd .
+    ?gndConcept rdf:type ?wdType .
+    ?gndConcept wdt:P31 ?wdType .
+    ?gndConcept rdfs:label ?name .
+    ?gndConcept schema:description ?description .
+    ?gndConcept owl:sameAs ?gnd .
 }
 
 WHERE {
-    ?type wdt:P227 ?gndType .
-    ?type wdt:P31 ?wdType .
-    ?type rdfs:label ?name .
-    ?type schema:description ?description .
-    BIND(URI(CONCAT("https://d-nb.info/gnd/", ?gndType)) as ?gnd)
+    ?gndConcept wdt:P227 ?gndId .
+    ?gndConcept wdt:P31 ?wdType .
+    ?gndConcept rdfs:label ?name .
+    ?gndConcept schema:description ?description .
+    BIND(URI(CONCAT("https://d-nb.info/gnd/", ?gndId)) as ?gnd)
     FILTER (LANG(?name) = "en")
     FILTER (LANG(?description) = "en")
 }
