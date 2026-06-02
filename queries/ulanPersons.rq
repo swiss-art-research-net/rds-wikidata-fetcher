@@ -1,0 +1,25 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX schema: <http://schema.org/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+CONSTRUCT {
+    ?ulanArtist rdf:type ?wdType , wd:Q5, crm:E39_Actor .
+    ?ulanArtist wdt:P31 ?wdType .
+    ?ulanArtist rdfs:label ?name .
+    ?ulanArtist schema:description ?description .
+    ?ulanArtist owl:sameAs ?ulan .
+}
+
+WHERE {
+    ?ulanArtist wdt:P245 ?ulanId .
+    ?ulanArtist wdt:P31 ?wdType .
+    ?ulanArtist rdfs:label ?name .
+    ?ulanArtist schema:description ?description .
+    BIND(URI(CONCAT("http://vocab.getty.edu/ulan/", ?ulanId)) as ?ulan)
+    FILTER (LANG(?name) = "en")
+    FILTER (LANG(?description) = "en")
+}
