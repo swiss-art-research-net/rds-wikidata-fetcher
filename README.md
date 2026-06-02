@@ -15,8 +15,8 @@ Run the script with the included example query:
 
 ```bash
 python3 fetch_sparql_construct.py \
-  --query-file queries/people.rq \
-  --output output/people.ttl \
+  --query-file queries/artists.rq \
+  --output output/artists.ttl \
   --page-size 50000
 ```
 
@@ -69,13 +69,26 @@ Example with more conservative retry settings:
 
 ```bash
 python3 fetch_sparql_construct.py \
-  --query-file queries/people.rq \
-  --output output/people.ttl \
+  --query-file queries/artists.rq \
+  --output output/artists.ttl \
   --page-size 2000 \
   --timeout 120 \
   --max-retries 8 \
   --retry-backoff 3
 ```
+
+## Batch Fetching All Queries
+
+Use `fetch_all_queries.sh` to run every `.rq` file in [`queries/`](/Users/fkraeutli/Sites/rds-wikidata-fetch/queries) and write matching Turtle files into `output/`.
+
+```bash
+./fetch_all_queries.sh
+```
+
+Notes:
+
+- Existing files in `output/` are skipped.
+- The script exits with a non-zero status if any query fails.
 
 ## Command-Line Options
 
