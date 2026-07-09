@@ -1,0 +1,25 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX schema: <http://schema.org/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+CONSTRUCT {
+    ?lcnafPerson rdf:type ?wdType , wd:Q5, crm:E39_Actor .
+    ?lcnafPerson wdt:P31 ?wdType .
+    ?lcnafPerson rdfs:label ?name .
+    ?lcnafPerson schema:description ?description .
+    ?lcnafPerson owl:sameAs ?lcnaf .
+}
+
+WHERE {
+    ?lcnafPerson wdt:P244 ?lcnafId .
+    ?lcnafPerson wdt:P31 ?wdType .
+    ?lcnafPerson rdfs:label ?name .
+    ?lcnafPerson schema:description ?description .
+    BIND(URI(CONCAT("http://id.loc.gov/authorities/names/", ?lcnafId)) as ?lcnaf)
+    FILTER (LANG(?name) = "en")
+    FILTER (LANG(?description) = "en")
+}
