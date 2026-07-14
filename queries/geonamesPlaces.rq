@@ -19,7 +19,7 @@ WHERE {
     ?geonamesPlace wdt:P31 ?wdType .
     ?geonamesPlace rdfs:label ?name .
     ?geonamesPlace schema:description ?description .
-    BIND(URI(CONCAT("https://sws.geonames.org/2657970/", ?geonamesId, "/")) as ?geonames)
+    BIND(URI(CONCAT("https://sws.geonames.org/", ?geonamesId, "/")) as ?geonames)
     FILTER (LANG(?name) = "en")
     FILTER (LANG(?description) = "en")
 }
