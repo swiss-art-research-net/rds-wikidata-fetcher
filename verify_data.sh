@@ -14,7 +14,7 @@ Arguments:
   -h, --help        Show this help message.
 
 Requirements:
-  Requires the 'rapper' (Raptor RDF syntax parsing utility) and 'awk' commands installed.
+  Requires the 'rapper' (Raptor RDF syntax parsing utility - raptor2-utils) and 'awk' commands installed.
 EOF
 }
 
