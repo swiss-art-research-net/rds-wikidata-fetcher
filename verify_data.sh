@@ -36,16 +36,16 @@ while IFS= read -r -d '' file; do
     echo "Verifying $file,..."
 
     if out=$(rapper -g -c "$file" 2>&1); then
-    triples=$(printf "%s\n" "$out" | awk '/Parsing returned/ {print $4}')
-    echo "OK! Returned ${triples:-0} triples"
-    FILES_OK=$((FILES_OK + 1))
+        triples=$(printf "%s\n" "$out" | awk '/Parsing returned/ {print $4}')
+        echo "OK! Returned ${triples:-0} triples"
+        FILES_OK=$((FILES_OK + 1))
     else
-    echo "VERIFICATION FAILED"
-    err_line=$(printf "%s\n" "$out" | grep -i 'Error' | head -n1 || true)
-    [ -z "$err_line" ] && err_line=$(printf "%s\n" "$out" | head -n1)
-    echo "Error: $err_line"
-    FILES_ERROR=$((FILES_ERROR + 1))
-    ERROR_REPORT="${ERROR_REPORT}\n${file}: ${err_line}"
+        echo "VERIFICATION FAILED"
+        err_line=$(printf "%s\n" "$out" | grep -i 'Error' | head -n1 || true)
+        [ -z "$err_line" ] && err_line=$(printf "%s\n" "$out" | head -n1)
+        echo "Error: $err_line"
+        FILES_ERROR=$((FILES_ERROR + 1))
+        ERROR_REPORT="${ERROR_REPORT}\n${file}: ${err_line}"
     fi
 done < <(find "$DATA_DIR" -maxdepth 1 -type f -regex ".*\.\(ttl\|rdf\|rdfs\|nt\|nq\)" -print0)
 
