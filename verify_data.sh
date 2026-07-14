@@ -47,7 +47,7 @@ while IFS= read -r -d '' file; do
     FILES_ERROR=$((FILES_ERROR + 1))
     ERROR_REPORT="${ERROR_REPORT}\n${file}: ${err_line}"
     fi
-done < <(find "$DATA_DIR" -type f -regex ".*\.\(ttl\|rdf\|rdfs\|nt\|nq\)" -print0)
+done < <(find "$DATA_DIR" -maxdepth 1 -type f -regex ".*\.\(ttl\|rdf\|rdfs\|nt\|nq\)" -print0)
 
 FILES_VERIFIED=$((FILES_OK + FILES_ERROR))
 
