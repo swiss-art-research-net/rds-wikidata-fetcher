@@ -90,6 +90,20 @@ Notes:
 - Existing files in `output/` are skipped.
 - The script exits with a non-zero status if any query fails.
 
+## Verifying Output Data
+
+Use `verify_data.sh` to scan RDF files in `output/` and validate their syntax with `rapper`.
+
+```bash
+./verify_data.sh
+```
+
+You can also point it at a different directory:
+
+```bash
+./verify_data.sh path/to/data
+```
+
 ## Command-Line Options
 
 - `--query`: pass a SPARQL `CONSTRUCT` query inline
