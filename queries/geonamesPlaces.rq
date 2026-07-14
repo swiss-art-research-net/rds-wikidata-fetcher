@@ -1,0 +1,25 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX schema: <http://schema.org/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+CONSTRUCT {
+    ?geonamesPlace rdf:type ?wdType , crm:E53_Place .
+    ?geonamesPlace wdt:P31 ?wdType .
+    ?geonamesPlace rdfs:label ?name .
+    ?geonamesPlace schema:description ?description .
+    ?geonamesPlace owl:sameAs ?geonames .
+}
+
+WHERE {
+    ?geonamesPlace wdt:P1566 ?geonamesId .
+    ?geonamesPlace wdt:P31 ?wdType .
+    ?geonamesPlace rdfs:label ?name .
+    ?geonamesPlace schema:description ?description .
+    BIND(URI(CONCAT("https://sws.geonames.org/2657970/", ?geonamesId, "/")) as ?geonames)
+    FILTER (LANG(?name) = "en")
+    FILTER (LANG(?description) = "en")
+}
