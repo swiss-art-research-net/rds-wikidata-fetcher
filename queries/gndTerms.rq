@@ -17,8 +17,14 @@ WHERE {
     ?gndConcept wdt:P227 ?gndId .
     ?gndConcept wdt:P31 ?wdType .
     ?gndConcept rdfs:label ?name .
-    ?gndConcept schema:description ?description .
-    BIND(URI(CONCAT("https://d-nb.info/gnd/", ?gndId)) as ?gnd)
     FILTER (LANG(?name) = "en")
-    FILTER (LANG(?description) = "en")
+    BIND(URI(CONCAT("https://d-nb.info/gnd/", ?gndId)) as ?gnd)
+    OPTIONAL { ?gndConcept schema:description ?desc_en . FILTER (LANG(?desc_en) = "en") }
+    OPTIONAL { ?gndConcept schema:description ?desc_de . FILTER (LANG(?desc_de) = "de") }
+    OPTIONAL {
+        SELECT ?gndConcept (SAMPLE(?d_any) as ?desc_any) WHERE {
+            ?gndConcept schema:description ?d_any .
+        } GROUP BY ?gndConcept
+    }
+    BIND(COALESCE(?desc_en, ?desc_de, ?desc_any) as ?description)
 }
