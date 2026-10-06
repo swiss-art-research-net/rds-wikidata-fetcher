@@ -23,6 +23,8 @@ WHERE {
     BIND(URI(CONCAT("https://sws.geonames.org/", ?geonamesId, "/")) as ?geonames)
     OPTIONAL {
         VALUES ?predicate {
+            wdt:P18
+            wdt:P2096
             wdt:P17
             wdt:P131
             wdt:P625

@@ -25,6 +25,8 @@ WHERE {
   }
   OPTIONAL {
     VALUES ?predicate {
+      wdt:P18
+      wdt:P2096
       wdt:P569
       wdt:P570
       wdt:P19
