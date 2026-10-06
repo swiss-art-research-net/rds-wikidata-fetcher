@@ -12,6 +12,7 @@ CONSTRUCT {
     ?aatConcept rdfs:label ?name .
     ?aatConcept schema:description ?description .
     ?aatConcept owl:sameAs ?aat .
+    ?aatConcept ?predicate ?additionalProperty .
 }
 
 WHERE {
@@ -19,6 +20,17 @@ WHERE {
     ?aatConcept wdt:P31 ?wdType .
     ?aatConcept rdfs:label ?name .
     ?aatConcept schema:description ?description .
+    OPTIONAL {
+        VALUES ?predicate {
+            wdt:P279
+            wdt:P361
+            wdt:P366
+            wdt:P186
+            wdt:P571
+            wdt:P495
+        }
+        ?aatConcept ?predicate ?additionalProperty .
+    }
     BIND(URI(CONCAT("http://vocab.getty.edu/aat/", STR(?aatType))) AS ?aat)
     FILTER (LANG(?name) = "en")
     FILTER (LANG(?description) = "en")
