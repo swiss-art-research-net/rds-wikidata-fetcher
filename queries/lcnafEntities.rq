@@ -12,6 +12,7 @@ CONSTRUCT {
     ?lcnafEntity rdfs:label ?name .
     ?lcnafEntity schema:description ?description .
     ?lcnafEntity owl:sameAs ?lcnaf .
+    ?lcnafEntity ?predicate ?additionalProperty .
 }
 
 WHERE {
@@ -19,6 +20,30 @@ WHERE {
     ?lcnafEntity wdt:P31 ?wdType .
     ?lcnafEntity rdfs:label ?name .
     ?lcnafEntity schema:description ?description .
+    OPTIONAL {
+        VALUES ?predicate {
+            wdt:P18
+            wdt:P2096
+            wdt:P569
+            wdt:P570
+            wdt:P19
+            wdt:P20
+            wdt:P106
+            wdt:P27
+            wdt:P135
+            wdt:P101 
+            wdt:P571
+            wdt:P576
+            wdt:P112
+            wdt:P159
+            wdt:P276
+            wdt:P17
+            wdt:P361
+            wdt:P749
+            wdt:P101
+        }
+        ?lcnafEntity ?predicate ?additionalProperty .
+    }
     BIND(URI(CONCAT("http://id.loc.gov/authorities/names/", ?lcnafId)) as ?lcnaf)
     FILTER (LANG(?name) = "en")
     FILTER (LANG(?description) = "en")

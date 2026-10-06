@@ -12,6 +12,7 @@ CONSTRUCT {
     ?ulanArtist rdfs:label ?name .
     ?ulanArtist schema:description ?description .
     ?ulanArtist owl:sameAs ?ulan .
+    ?ulanArtist ?predicate ?additionalProperty .
 }
 
 WHERE {
@@ -19,6 +20,21 @@ WHERE {
     ?ulanArtist wdt:P31 ?wdType .
     ?ulanArtist rdfs:label ?name .
     ?ulanArtist schema:description ?description .
+    OPTIONAL {
+        VALUES ?predicate {
+            wdt:P18
+            wdt:P2096
+            wdt:P569
+            wdt:P570
+            wdt:P19
+            wdt:P20
+            wdt:P106
+            wdt:P27
+            wdt:P135
+            wdt:P101 
+        }
+        ?ulanArtist ?predicate ?additionalProperty .
+    }
     BIND(URI(CONCAT("http://vocab.getty.edu/ulan/", ?ulanId)) as ?ulan)
     FILTER (LANG(?name) = "en")
     FILTER (LANG(?description) = "en")
