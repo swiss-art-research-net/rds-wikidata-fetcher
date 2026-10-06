@@ -12,6 +12,7 @@ CONSTRUCT {
   ?artist rdfs:label ?name .
   ?artist schema:description ?description .
   ?artist owl:sameAs ?viaf .
+  ?artist ?predicate ?additionalProperty .
 }
 WHERE {
   ?artist wdt:P31 wd:Q5 .
@@ -21,6 +22,19 @@ WHERE {
   OPTIONAL {
     ?artist wdt:P214 ?viaf_id .
     BIND(URI(CONCAT("https://viaf.org/viaf/", STR(?viaf_id))) AS ?viaf) 
+  }
+  OPTIONAL {
+    VALUES ?predicate {
+      wdt:P569
+      wdt:P570
+      wdt:P19
+      wdt:P20
+      wdt:P106
+      wdt:P27
+      wdt:P135
+      wdt:P101      
+    }
+    ?artist ?predicate ?additionalProperty .
   }
   FILTER (LANG(?name) = "en")
   FILTER (LANG(?description) = "en")
