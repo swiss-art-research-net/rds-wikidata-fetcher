@@ -22,16 +22,19 @@ WHERE {
     ?ulanArtist schema:description ?description .
     OPTIONAL {
         VALUES ?predicate {
+            wdt:P1476
+            wdt:P1680
             wdt:P18
             wdt:P2096
             wdt:P569
             wdt:P570
-            wdt:P19
-            wdt:P20
-            wdt:P106
-            wdt:P27
-            wdt:P135
-            wdt:P101 
+            wdt:P571
+            wdt:P576
+            wdt:P577
+            wdt:P580
+            wdt:P582
+            wdt:P585
+            wdt:P625
         }
         ?ulanArtist ?predicate ?additionalProperty .
     }

@@ -20,31 +20,10 @@ WHERE {
     ?gndConcept rdfs:label ?name .
     OPTIONAL {
         VALUES ?predicate {
-            wdt:P17
-            wdt:P19
-            wdt:P20
-            wdt:P27
-            wdt:P50
-            wdt:P84
-            wdt:P101
-            wdt:P106
-            wdt:P112
-            wdt:P123
-            wdt:P131
-            wdt:P135
-            wdt:P136
-            wdt:P159
-            wdt:P170
-            wdt:P179
-            wdt:P180
-            wdt:P186
-            wdt:P195
-            wdt:P276
-            wdt:P279
-            wdt:P361
-            wdt:P366
-            wdt:P407
-            wdt:P495
+            wdt:P1476
+            wdt:P1680
+            wdt:P18
+            wdt:P2096
             wdt:P569
             wdt:P570
             wdt:P571
@@ -54,14 +33,6 @@ WHERE {
             wdt:P582
             wdt:P585
             wdt:P625
-            wdt:P629
-            wdt:P664
-            wdt:P749
-            wdt:P921
-            wdt:P1476
-            wdt:P1680
-            wdt:P2079
-            wdt:P2096
         }
         ?gndConcept ?predicate ?additionalProperty .
     }
