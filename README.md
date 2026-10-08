@@ -1,8 +1,22 @@
 # RDS Wikidata Fetcher
 
 Python script and queries to download large SPARQL `CONSTRUCT` result sets from the Swiss Art Research Wikidata API and similar endpoints, with pagination and retry logic.
-
 Used to create partial Wikidata dumps for use in the Reference Data Service (RDS) project.
+
+## Quick use
+
+Fetch all queries defined in the `queries/` directory and store the resulting Turtle files in the `output/` directory using the batch fetching script:
+
+```bash
+./fetch_all_queries.sh
+```
+
+Verify the downloaded data using the verification script, applying in-place corrections for any syntax errors:
+
+```bash
+./verify_data.sh --remove-errors
+```
+
 
 ## Requirements
 
