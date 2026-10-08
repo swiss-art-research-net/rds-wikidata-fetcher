@@ -104,6 +104,14 @@ You can also point it at a different directory:
 ./verify_data.sh path/to/data
 ```
 
+To remove malformed lines automatically, use `--remove-errors`. For each error reported by
+`rapper`, the script removes the following line and verifies the file again. This modifies the
+RDF files in place.
+
+```bash
+./verify_data.sh --remove-errors
+```
+
 ## Command-Line Options
 
 - `--query`: pass a SPARQL `CONSTRUCT` query inline
